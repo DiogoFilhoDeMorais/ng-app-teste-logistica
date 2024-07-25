@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-app-teste-logistica';
+  showFiller = false;
 }
