@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { delivaries, Delivery, Neighborhood } from 'src/mock/deliveries.mock';
+import { tableA, tableB, tableC } from 'src/mock/deliveries.mock';
 
 @Component({
   selector: 'app-root',
@@ -8,45 +8,32 @@ import { delivaries, Delivery, Neighborhood } from 'src/mock/deliveries.mock';
 })
 export class AppComponent {
 
-  table01: string[] = ['position', 'name', 'total', 'alldone'];
-  table02: string[] = ['position', 'name', 'failed'];
-  table03: string[] = ['position', 'name', 'failed'];
+  consigTableA: string[] = ['name', 'total', 'done'];
+  consigTableB: string[] = ['name', 'failed'];
+  consigTableC: string[] = ['name', 'failed'];
 
-  deliveryList!: Array<Delivery>;
+  tableA!: any;
+  tableB!: any;
+  tableC!: any;
 
-  neighborhoodDeliveryLis: Array<Neighborhood> = [];
+  neighborhoodDeliveryLis: any = [];
 
   constructor() {
-    this.getDeliveryList();
-    this.getNeighborhoodDeliveryList(this.deliveryList);
+    this.getTableA();
+    this.getTableB();
+    this.getTableC();
   }
 
-  getDeliveryList(): void {
-    this.deliveryList = delivaries
+  getTableA(): void {
+    this.tableA = tableA
   }
 
-  getNeighborhoodDeliveryList(d: Array<Delivery>): void {
-      // Criar um objeto para armazenar os resultados, agrupando por ID
-      let resultado = {};
+  getTableB(): void {
+    this.tableB = tableB
+  }
 
-      // Iterar sobre cada objeto em d (varB)
-      d.forEach((n: any) => {
-        const { id, ...rest } = (n: any);
-
-        // Se o ID já existe no resultado, soma os valores
-        if (resultado[id]) {
-          Object.keys(rest).forEach(key => {
-            resultado[id][key] += rest[key];
-          });
-        } else {
-          // Se o ID não existe, cria um novo objeto
-          resultado[id] = { ...rest, id };
-        }
-      });
-
-    console.log(resultado);
-
-
+  getTableC(): void {
+    this.tableC = tableC
   }
 
 }
