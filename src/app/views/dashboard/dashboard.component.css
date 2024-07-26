@@ -5,7 +5,7 @@
 
 @media screen and (max-width: 412px) {
   ::ng-deep mat-card {
-    margin: 10px;
+    margin: 10px 10px 20px 10px;
     width: calc(100% - 20px);
   }
 }

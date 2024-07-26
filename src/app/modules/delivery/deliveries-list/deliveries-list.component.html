@@ -29,19 +29,19 @@
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="address" *ngIf="!device.isMobile">
+        <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef>Endereço</th>
           <td mat-cell *matCellDef="let element">{{ element.address }}</td>
         </ng-container>
 
         <!-- date Column -->
-        <ng-container matColumnDef="date" *ngIf="!device.isMobile">
+        <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Data</th>
           <td mat-cell *matCellDef="let element">{{ element.date }}</td>
         </ng-container>
 
         <!-- time Column -->
-        <ng-container matColumnDef="time" *ngIf="!device.isMobile">
+        <ng-container matColumnDef="time">
           <th mat-header-cell *matHeaderCellDef>Horário</th>
           <td mat-cell *matCellDef="let element">{{ element.time }}</td>
         </ng-container>

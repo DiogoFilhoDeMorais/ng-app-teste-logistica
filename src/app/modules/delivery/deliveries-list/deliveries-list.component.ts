@@ -9,7 +9,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   styleUrls: ['./deliveries-list.component.scss'],
 })
 export class DeliveriesListComponent implements OnInit, AfterViewInit {
-  configTableD: string[] = ['id', 'name', 'address', 'date', 'time', 'status'];
+  configTableD!: string[];
   tableD!: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -20,6 +20,12 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    if (this.device.isMobile()) {
+      this.configTableD = ['id', 'name', 'status'];
+    } else {
+      this.configTableD = ['id', 'name', 'address', 'date', 'time', 'status'];
+    }
+
     this.getTableD();
   }
 
