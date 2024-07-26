@@ -1,3 +1,66 @@
-<p>
-  deliveries-list works!
-</p>
+<section>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Entregas</mat-card-title>
+      <mat-card-subtitle>
+        Acompanhe todas as entregas
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="tableD">
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Endereço</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container>
+
+        <!-- date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+        </ng-container>
+
+        <!-- time Column -->
+        <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef>Horário</th>
+          <td mat-cell *matCellDef="let element">{{ element.time }}</td>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element.status === 0 ? 'Em andamento' :
+              element.status === 1 ? 'Concluído' :
+              element.status === 2 ? 'Falhou' : ''
+            }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="configTableD"></tr>
+        <tr mat-row *matRowDef="let row; columns: configTableD"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</section>

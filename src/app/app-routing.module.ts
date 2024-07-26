@@ -8,7 +8,7 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'list',
+    path: '',
     loadChildren: () => import("./modules/shared-modules.module").then(m => m.SharedModulesModule)
   }
 ];

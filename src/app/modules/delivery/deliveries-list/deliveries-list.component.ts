@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { tableD } from 'src/mock/deliveries.mock';
 
 @Component({
   selector: 'app-deliveries-list',
   templateUrl: './deliveries-list.component.html',
   styleUrls: ['./deliveries-list.component.scss']
 })
-export class DeliveriesListComponent implements OnInit {
+export class DeliveriesListComponent implements AfterViewInit {
+  configTableD: string[] = ['id', 'name', 'address', 'date', 'time', 'status'];
+  tableD!: any;
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngOnInit() {
+  constructor() {
+    this.getTableD();
   }
 
+  ngAfterViewInit() {
+    this.tableD.paginator = this.paginator;
+  }
+
+  getTableD(): void {
+    this.tableD = new MatTableDataSource<any>(tableD);
+  }
+}
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
 }

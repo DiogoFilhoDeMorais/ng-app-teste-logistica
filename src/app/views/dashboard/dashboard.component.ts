@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { tableA, tableB, tableC } from 'src/mock/deliveries.mock';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  constructor() { }
+  configTableA: string[] = ['name', 'total', 'done'];
+  configTableB: string[] = ['name', 'fail'];
+  configTableC: string[] = ['name', 'total', 'done'];
 
-  ngOnInit() {
+  tableA!: any;
+  tableB!: any;
+  tableC!: any;
+
+  neighborhoodDeliveryLis: any = [];
+
+  constructor() {
+    this.getTableA();
+    this.getTableB();
+    this.getTableC();
+  }
+
+  getTableA(): void {
+    this.tableA = tableA
+  }
+
+  getTableB(): void {
+    this.tableB = tableB
+  }
+
+  getTableC(): void {
+    this.tableC = tableC
   }
 
 }
