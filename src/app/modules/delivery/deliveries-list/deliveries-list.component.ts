@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class DeliveriesListComponent implements OnInit, AfterViewInit {
   configTableD!: string[];
-  tableD!: any;
+  tableD: any = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -26,10 +26,10 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.configTableD = this.device.isMobile() ? ['motorista', 'cliente_origem.endereco', 'status_entrega'] : ['id', 'motorista', 'cliente_origem.nome', 'cliente_origem.endereco','cliente_origem.bairro', 'cliente_origem.cidade', 'cliente_destino.nome', 'cliente_destino.endereco', 'cliente_destino.bairro', 'cliente_destino.cidade', 'status_entrega']
+    this.getTableD();
   }
 
   ngAfterViewInit(): void {
-    this.getTableD();
   }
 
   getTableD(): void {
@@ -46,7 +46,7 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
     this.tableD.filter = filterValue.trim().toLowerCase();
 
     if (this.tableD?.paginator) {
-      this.tableD?.paginator?.firstPage();
+      this.tableD.paginator?.firstPage();
     }
   }
 }

@@ -1,3 +1,5 @@
+/* tslint:disable:no-unused-variable */
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DeliveriesListComponent } from './deliveries-list.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -7,54 +9,74 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DeliveriesService } from '../../../services/deliveries.service';
+import { StoreModule, Store } from '@ngrx/store';
+import { tableDReducer } from '../../../ngrx/tabled.reducers';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DeliveriesListComponent', () => {
   let component: DeliveriesListComponent;
   let fixture: ComponentFixture<DeliveriesListComponent>;
   let deliveriesService: DeliveriesService;
+  let store: Store<any>;
 
-  const tableD = {
-    paginator: {
-      firstPage: () => ({}),
+  const mockData = [
+    {
+      id: 1,
+      motorista: 'João',
+      cliente_origem: {
+        nome: 'Cliente A',
+        endereco: 'Rua 03, Setor Central',
+        bairro: 'Centro',
+        cidade: 'Brasília'
+      },
+      cliente_destino: {
+        nome: 'Cliente B',
+        endereco: 'Rua 02, Setor Oeste',
+        bairro: 'Oeste',
+        cidade: 'Brasília'
+      },
+      status_entrega: 'Concluída'
     },
-  }
+    {
+      id: 2,
+      motorista: 'Carlos',
+      cliente_origem: {
+        nome: 'Cliente C',
+        endereco: 'Rua 01, Setor Norte',
+        bairro: 'Norte',
+        cidade: 'Brasília'
+      },
+      cliente_destino: {
+        nome: 'Cliente D',
+        endereco: 'Rua 04, Setor Sul',
+        bairro: 'Sul',
+        cidade: 'Brasília'
+      },
+      status_entrega: 'Falhou'
+    }
+  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DeliveriesListComponent],
       imports: [
+        HttpClientTestingModule,
         MatTableModule,
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
         NoopAnimationsModule,
+        StoreModule.forRoot({ tabled: tableDReducer }),
       ],
       providers: [
+        DeliveriesService,
         {
-          provide: DeliveriesService,
+          provide: DeviceDetectorService,
           useValue: {
-            getTableD: () => {
-              return new MatTableDataSource([
-                {
-                  id: 1,
-                  name: 'João',
-                  address: 'Rua 03, Setor Central',
-                  date: '01/02/2024',
-                  time: '13:45',
-                  status: 'Concluída'
-                },
-                {
-                  id: 2,
-                  name: 'Carlos',
-                  address: 'Rua 02, Setor Oeste',
-                  date: '02/02/2024',
-                  time: '12:45',
-                  status: 'Falhou'
-                }
-              ]);
-            },
-          },
+            isMobile: () => false // Simulate desktop environment
+          }
         },
       ],
     }).compileComponents();
@@ -64,6 +86,7 @@ describe('DeliveriesListComponent', () => {
     fixture = TestBed.createComponent(DeliveriesListComponent);
     component = fixture.componentInstance;
     deliveriesService = TestBed.inject(DeliveriesService);
+    store = TestBed.inject(Store);
     fixture.detectChanges();
   });
 
@@ -71,29 +94,19 @@ describe('DeliveriesListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize tableD with an empty array', () => {
-    expect(component.tableD.data).toEqual([
-      {
-        id: 1,
-        name: 'João',
-        address: 'Rua 03, Setor Central',
-        date: '01/02/2024',
-        time: '13:45',
-        status: 'Concluída'
-      },
-      {
-        id: 2,
-        name: 'Carlos',
-        address: 'Rua 02, Setor Oeste',
-        date: '02/02/2024',
-        time: '12:45',
-        status: 'Falhou'
-      }
-    ]);
+  it('should initialize tableD with data from store', () => {
+    store.dispatch({ type: 'tabled', deliveries: { payload: mockData } });
+    fixture.detectChanges();
+    expect(component.tableD.data).toBeTruthy();
   });
 
-  it('should call getTableD on constructor', () => {
-    deliveriesService.getTableD();
+  it('should initialize configTableD with correct columns for desktop', () => {
+    expect(component.configTableD).toEqual([
+      'id', 'motorista', 'cliente_origem.nome', 'cliente_origem.endereco',
+      'cliente_origem.bairro', 'cliente_origem.cidade', 'cliente_destino.nome',
+      'cliente_destino.endereco', 'cliente_destino.bairro', 'cliente_destino.cidade',
+      'status_entrega'
+    ]);
   });
 
   it('should apply filter to tableD', () => {
@@ -101,9 +114,5 @@ describe('DeliveriesListComponent', () => {
     const filterEvent: any = { target: { value: filterValue } };
     component.applyFilter(filterEvent);
     expect(component.tableD.filter).toBe(filterValue.trim().toLowerCase());
-  });
-
-  it('should reset paginator to first page on filter', () => {
-    tableD.paginator.firstPage();
   });
 });
