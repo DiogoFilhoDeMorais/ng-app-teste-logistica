@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class DeliveriesService {
 
-constructor(
-  private http: HttpClient
-) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-getTableD(): Observable<any> {
-  return this.http.get<MatTableDataSource<any>>('http://localhost:3000/tabled');
-}
+  getTableD(): Observable<any> {
+    return this.http.get<MatTableDataSource<any>>('http://localhost:3000/tabled');
+  }
 
 }

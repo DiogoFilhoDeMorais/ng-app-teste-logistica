@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}, {}), // Não vi necessidade de se implementar em uma applicação tão pequena
     EffectsModule.forRoot([]),
     MatButtonModule,
     MatCardModule,

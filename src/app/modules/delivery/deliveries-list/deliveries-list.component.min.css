@@ -1,1 +1,1 @@
-::ng-deep mat-card{margin:10px;width:calc(100% - 20px)}::ng-deep mat-form-field{padding-top:20px;width:100%}@media screen and (max-width: 412px){.desktop{display:none !important}}
+::ng-deep mat-card{margin:10px 10px 20px 10px;width:calc(100% - 20px)}::ng-deep mat-form-field{padding-top:20px;width:100%}@media screen and (max-width: 412px){.desktop{display:none !important}}
