@@ -1,4 +1,4 @@
-# Teste Aplicação Logistica - CBYK
+# Teste Aplicação Logística - CBYK
 
 - Autor: Diogo Filho de Morais
 - Linkedin: https://www.linkedin.com/in/diogofmor/
