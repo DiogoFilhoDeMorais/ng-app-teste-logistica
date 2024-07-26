@@ -1,27 +1,24 @@
-# NgAppTesteLogistica
+# Teste Aplicação Logistica - CBYK
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
+- Autor: Diogo Filho de Morais
+- Linkedin: https://www.linkedin.com/in/diogofmor/
 
-## Development server
+## Versões Utilizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Node: [18.17.0 - Clique para baixar](https://nodejs.org/pt/blog/release/v18.17.0)
 
-## Code scaffolding
+NPM: 10.1.0
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Angular: 16.1.0
 
-## Build
+Concurrently: [8.2.2 - Clique para ver a documentação](https://www.npmjs.com/package/concurrently)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Testando a Aplicação
 
-## Running unit tests
+Para testar a aplicação Angular, rode os seguintes comandos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    npm i concurrently
 
-## Running end-to-end tests
+    npm install 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    npm run start:test`

@@ -17,15 +17,15 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
   constructor(
     private deliveriesService: DeliveriesService,
     public device: DeviceDetectorService
-  ) {}
-
-  ngOnInit() {
+  ) {
     if (this.device.isMobile()) {
       this.configTableD = ['id', 'name', 'status'];
     } else {
       this.configTableD = ['id', 'name', 'address', 'date', 'time', 'status'];
     }
+  }
 
+  ngOnInit() {
     this.getTableD();
   }
 

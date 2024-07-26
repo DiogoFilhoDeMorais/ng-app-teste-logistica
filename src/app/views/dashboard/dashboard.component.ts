@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tableA, tableB, tableC } from 'mock/deliveries.mock';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,22 +18,24 @@ export class DashboardComponent {
 
   neighborhoodDeliveryLis: any = [];
 
-  constructor() {
+  constructor(
+    private dashboardService: DashboardService
+  ) {
     this.getTableA();
     this.getTableB();
     this.getTableC();
   }
 
   getTableA(): void {
-    this.tableA = tableA
+    this.tableA = this.dashboardService.getTableA();
   }
 
   getTableB(): void {
-    this.tableB = tableB
+    this.tableB = this.dashboardService.getTableB();
   }
 
   getTableC(): void {
-    this.tableC = tableC
+    this.tableC = this.dashboardService.getTableC();
   }
 
 }
