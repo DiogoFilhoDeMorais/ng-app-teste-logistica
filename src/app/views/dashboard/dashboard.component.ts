@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tableA, tableB, tableC } from 'src/mock/deliveries.mock';
+import { tableA, tableB, tableC } from 'mock/deliveries.mock';
 
 @Component({
   selector: 'app-dashboard',

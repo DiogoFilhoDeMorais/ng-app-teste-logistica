@@ -8,6 +8,7 @@ import { DeliveriesListComponent } from './delivery/deliveries-list/deliveries-l
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     CommonModule,
     SharedModulesRoutingModule,
+    HttpClientModule,
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,

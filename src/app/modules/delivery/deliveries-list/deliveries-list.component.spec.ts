@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DeliveriesService } from '../services/deliveries.service';
+import { DeliveriesService } from '../../../services/deliveries.service';
 
 describe('DeliveriesListComponent', () => {
   let component: DeliveriesListComponent;

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DeliveriesService } from '../services/deliveries.service';
+import { DeliveriesService } from '../../../services/deliveries.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
