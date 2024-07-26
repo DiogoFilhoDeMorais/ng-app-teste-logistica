@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DeliveriesService } from '../../../services/deliveries.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Store } from '@ngrx/store';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-deliveries-list',
@@ -15,26 +17,28 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
+    private store: Store<any>,
     private deliveriesService: DeliveriesService,
-    public device: DeviceDetectorService
+    public device: DeviceDetectorService,
   ) {
-    if (this.device.isMobile()) {
-      this.configTableD = ['id', 'name', 'status'];
-    } else {
-      this.configTableD = ['id', 'name', 'address', 'date', 'time', 'status'];
-    }
+    this.deliveriesService.getTableD();
   }
 
   ngOnInit() {
-    this.getTableD();
+    this.configTableD = this.device.isMobile() ? ['id', 'name', 'status'] : ['id', 'name', 'address', 'date', 'time', 'status']
   }
 
   ngAfterViewInit(): void {
-    this.tableD.paginator = this.paginator;
+    this.getTableD();
   }
 
   getTableD(): void {
-    this.tableD = this.deliveriesService.getTableD();
+    this.store.select('tabled').subscribe({
+      next: (state: any) => {
+        this.tableD = new MatTableDataSource<any>(state?.deliveries?.payload);
+        this.tableD.paginator = this.paginator;
+      }
+    });
   }
 
   applyFilter(event: Event) {

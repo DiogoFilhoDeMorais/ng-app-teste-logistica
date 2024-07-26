@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { initialAppState, tableDReducer } from './ngrx/tabled.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}), // Não vi necessidade de se implementar em uma applicação tão pequena
+    StoreModule.forRoot(initialAppState, {}),
+    // Aplicação muito pequena. Precisaria de mais funções para fazer sentido usar State Management
+    StoreModule.forFeature('tabled', tableDReducer),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: true }),
     EffectsModule.forRoot([]),
     MatButtonModule,
     MatCardModule,

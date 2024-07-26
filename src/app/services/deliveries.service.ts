@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { increment } from '../ngrx/tabled.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,16 @@ import { Observable } from 'rxjs';
 export class DeliveriesService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store<Array<any>>
   ) { }
 
-  getTableD(): Observable<any> {
-    return this.http.get<MatTableDataSource<any>>('http://localhost:3000/tabled');
+  getTableD(): void {
+    this.http.get<any>('http://localhost:3000/tabled').subscribe({
+      next: (res: any) => {
+        this.store.dispatch(increment({payload: res}));
+      }
+    });
   }
 
 }
