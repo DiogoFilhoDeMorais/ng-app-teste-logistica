@@ -9,6 +9,12 @@ body {
   background-color: #1d1d1d;
 }
 
+h1 {
+  color: aliceblue;
+  margin-left: 20px !important;
+  padding-top: 80px !important;
+}
+
 section {
   margin: 10px;
   width: calc(100% - 20px);

@@ -25,11 +25,13 @@ export class DeliveriesListComponent implements AfterViewInit {
   getTableD(): void {
     this.tableD = new MatTableDataSource<any>(tableD);
   }
-}
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tableD.filter = filterValue.trim().toLowerCase();
+
+    if (this.tableD.paginator) {
+      this.tableD.paginator.firstPage();
+    }
+  }
 }

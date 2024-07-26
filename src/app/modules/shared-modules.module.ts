@@ -6,6 +6,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { DeliveriesListComponent } from './delivery/deliveries-list/deliveries-list.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
 })
 export class SharedModulesModule { }

@@ -2,3 +2,8 @@
   margin: 10px;
   width: calc(100% - 20px);
 }
+
+::ng-deep mat-form-field {
+  padding-top: 20px;
+  width: 100%;
+}

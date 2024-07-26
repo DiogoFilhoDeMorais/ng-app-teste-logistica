@@ -1,5 +1,6 @@
-<section>
+<h1>Lista de Entregas</h1>
 
+<section>
   <mat-card>
     <mat-card-header>
       <mat-card-title>Entregas</mat-card-title>
@@ -8,6 +9,12 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+
       <table mat-table [dataSource]="tableD">
         <!-- id Column -->
         <ng-container matColumnDef="id">
@@ -43,11 +50,7 @@
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let element">
-            {{
-              element.status === 0 ? 'Em andamento' :
-              element.status === 1 ? 'Concluído' :
-              element.status === 2 ? 'Falhou' : ''
-            }}
+            {{ element.status }}
           </td>
         </ng-container>
 
