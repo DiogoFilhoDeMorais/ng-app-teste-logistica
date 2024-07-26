@@ -28,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(initialAppState, {}),
-    // Aplicação muito pequena. Precisaria de mais funções para fazer sentido usar State Management
     StoreModule.forFeature('tabled', tableDReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: true }),
     EffectsModule.forRoot([]),

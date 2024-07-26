@@ -25,7 +25,7 @@ export class DeliveriesListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.configTableD = this.device.isMobile() ? ['id', 'name', 'status'] : ['id', 'name', 'address', 'date', 'time', 'status']
+    this.configTableD = this.device.isMobile() ? ['motorista', 'cliente_origem.endereco', 'status_entrega'] : ['id', 'motorista', 'cliente_origem.nome', 'cliente_origem.endereco','cliente_origem.bairro', 'cliente_origem.cidade', 'cliente_destino.nome', 'cliente_destino.endereco', 'cliente_destino.bairro', 'cliente_destino.cidade', 'status_entrega']
   }
 
   ngAfterViewInit(): void {
