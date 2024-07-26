@@ -1,37 +1,37 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { tableD } from 'src/mock/deliveries.mock';
+import { DeliveriesService } from '../services/deliveries.service';
 
 @Component({
   selector: 'app-deliveries-list',
   templateUrl: './deliveries-list.component.html',
-  styleUrls: ['./deliveries-list.component.scss']
+  styleUrls: ['./deliveries-list.component.scss'],
 })
-export class DeliveriesListComponent implements AfterViewInit {
+export class DeliveriesListComponent implements OnInit {
   configTableD: string[] = ['id', 'name', 'address', 'date', 'time', 'status'];
   tableD!: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-    this.getTableD();
-  }
+  constructor(
+    private deliveriesService: DeliveriesService
+  ) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
+    this.getTableD();
     this.tableD.paginator = this.paginator;
   }
 
   getTableD(): void {
-    this.tableD = new MatTableDataSource<any>(tableD);
+    this.tableD = this.deliveriesService.getTableD();
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.tableD.filter = filterValue.trim().toLowerCase();
 
-    if (this.tableD.paginator) {
-      this.tableD.paginator.firstPage();
+    if (this.tableD?.paginator) {
+      this.tableD?.paginator?.firstPage();
     }
   }
 }
