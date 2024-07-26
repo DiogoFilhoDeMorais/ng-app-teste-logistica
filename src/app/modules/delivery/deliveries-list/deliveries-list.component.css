@@ -7,3 +7,9 @@
   padding-top: 20px;
   width: 100%;
 }
+
+@media screen and (max-width: 412px) {
+  .desktop {
+    display: none !important;
+  }
+}

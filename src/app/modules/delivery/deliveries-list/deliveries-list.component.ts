@@ -1,24 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DeliveriesService } from '../services/deliveries.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-deliveries-list',
   templateUrl: './deliveries-list.component.html',
   styleUrls: ['./deliveries-list.component.scss'],
 })
-export class DeliveriesListComponent implements OnInit {
+export class DeliveriesListComponent implements OnInit, AfterViewInit {
   configTableD: string[] = ['id', 'name', 'address', 'date', 'time', 'status'];
   tableD!: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private deliveriesService: DeliveriesService
+    private deliveriesService: DeliveriesService,
+    public device: DeviceDetectorService
   ) {}
 
   ngOnInit() {
     this.getTableD();
+  }
+
+  ngAfterViewInit(): void {
     this.tableD.paginator = this.paginator;
   }
 
