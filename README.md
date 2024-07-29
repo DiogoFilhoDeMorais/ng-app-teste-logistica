@@ -17,9 +17,9 @@ Concurrently: [8.2.2 - Clique para ver a documentação](https://www.npmjs.com/p
 
 Para testar a aplicação Angular, rode os seguintes comandos:
 
-    npm i concurrently
-
     npm install --legacy-peer-deps
+
+    npm i concurrently
 
     npm run start:test
 
