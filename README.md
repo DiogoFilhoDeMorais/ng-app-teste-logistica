@@ -19,6 +19,10 @@ Para testar a aplicação Angular, rode os seguintes comandos:
 
     npm i concurrently
 
-    npm install 
+    npm install --legacy-peer-deps
 
-    npm run start:test`
+    npm run start:test
+
+### Para teste unitários
+
+    ng test
